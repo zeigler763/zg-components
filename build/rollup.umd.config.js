@@ -2,7 +2,7 @@ import basicConfig, { file } from './rollup.config';
 export default {
   ...basicConfig,
   output: {
-    name: 'zgComponent',
+    name: 'zgComponents',
     file: file('umd'),
     format: 'umd',
     globals: {
