@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { computed, defineComponent, openBlock, createElementBlock, Fragment, createCommentVNode, createBlock, resolveDynamicComponent, normalizeStyle, withCtx, createTextVNode, toDisplayString } from 'vue';
 import { without, mapValues, pick } from 'lodash-es';
 
@@ -73,6 +74,7 @@ const useComponentCommon = (props, picks) => {
 
 const defaultProps = transformToComponentProps(textDefaultProps);
 var script = defineComponent({
+    name: 'LText',
     // 合并 props
     props: {
         tag: {
@@ -118,6 +120,7 @@ script.install = (app) => {
 const components = [script];
 const install = (app) => {
     components.forEach((component) => {
+        console.log(component.name + '于世民');
         app.component(component.name, component);
     });
 };

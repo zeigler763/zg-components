@@ -21,6 +21,7 @@ import {
 import useComponentCommon from '@/hooks/useComponentCommon';
 const defaultProps = transformToComponentProps(textDefaultProps);
 export default defineComponent({
+  name: 'LText',
   // 合并 props
   props: {
     tag: {

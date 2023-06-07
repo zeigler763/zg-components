@@ -76,6 +76,7 @@
 
   const defaultProps = transformToComponentProps(textDefaultProps);
   var script = vue.defineComponent({
+      name: 'LText',
       // 合并 props
       props: {
           tag: {
@@ -121,6 +122,7 @@
   const components = [script];
   const install = (app) => {
       components.forEach((component) => {
+          console.log(component.name + '于世民');
           app.component(component.name, component);
       });
   };
