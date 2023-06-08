@@ -1,3 +1,11 @@
 language: node_js
 node_js:
-  - '16.19.0'
+  - 16.19.0
+deploy:
+  provider: npm
+  email: yushimin@qq.com
+  api_key:
+    secure: ozs1IaaWtFmgcV5MIoAWXS2YIGPD411pTXfpv3/hJ7EnlWLoGPq6sS+x5g1HEyXICcnbTot2N5WcwWYZBPS6igYFI0WWCxM9Ypw9+IhpTReDvloEYTG7Eg4Hqtixa0so2D1QLG4p9W57vneF+mt6+Z0l1K9ZM5hxc3mKXDt8ERi8mNVSyw7Jmqor8zeUVCTMlnnvN6vum2Ui0rhBahaTPVICphNCxWYIwDAn5lb9iBO7RkrGjbhGgtmqNSxL11B/NWXLCviMYdaWQxI9srKgKlPiFvl47uBJs+nAdeLh7iul0gG9y7NiyghKgd+B0w+V1LWCQY+rKPw/40rRVCeLzi3ENVG9hAfPY8FiY5Us09yrs6oSAlCmhH68nIvRvqg8HLWz+o4zG9YKOjP/H4cThuGkWbeN8v67sHqC9tUS/BfkCY0HBt2PnEXJii1V/xDijBG9R0UEilYmCKMLHMti7hzuua7RJIy9jTqSG0QyUkrJDSaJBmfd9ZY9Ltme1XxcvXjSSiA+52tZC0ViIJP8HlZk/G6AiqUR2mGIkzg/+J4zIsctNjvstf8U2rqpbB/yx7xZ7q2LuztZJGXjj+LZsrvQ9MKxukg0x9qjkyIgSYAkKSQi3Sox/WLlPVMjn1K2Cq2OPR1mjxqzIyUxtJ+V3LT6+eFJWDEqNlCwb5BTd7g=
+  skip_cleanup: true
+  on:
+    tags: true
