@@ -105,13 +105,21 @@ export const imageStylePropsNames = without(
   'src'
 );
 
+export const isEditingProp = {
+  isEditing: {
+    type: Boolean,
+    default: false
+  }
+};
+
 export const transformToComponentProps = <T extends { [key: string]: any }>(
   props: T
 ) => {
-  return mapValues(props, (item) => {
+  const mapProps = mapValues(props, (item) => {
     return {
       type: item.constructor,
       default: item
     };
   });
+  return { ...mapProps, ...isEditingProp };
 };

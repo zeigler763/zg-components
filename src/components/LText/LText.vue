@@ -1,5 +1,4 @@
 <template>
-  <!-- 使用动态组件进行渲染 -->
   <component
     :is="tag"
     :style="styleProps"
