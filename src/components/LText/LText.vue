@@ -16,7 +16,6 @@ import {
   textDefaultProps,
   textStylePropNames
 } from '@/defaultProps';
-
 import useComponentCommon from '@/hooks/useComponentCommon';
 const defaultProps = transformToComponentProps(textDefaultProps);
 export default defineComponent({
