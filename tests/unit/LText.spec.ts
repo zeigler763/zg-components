@@ -40,7 +40,7 @@ describe('LText.vue', () => {
     const wrapper = shallowMount(LText, { props });
     expect(wrapper.element.tagName).toBe('H2');
     await wrapper.trigger('click');
-    expect(window.location.href).toBe('http://dummy.url');
+    expect(window.location.href).toBe('http://dummy.url1');
   });
   it('LText with isEditing should not trigger location change', async () => {
     const props = {
