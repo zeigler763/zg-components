@@ -52,19 +52,26 @@
   // 排除非样式属性
   const textStylePropNames = lodashEs.without(Object.keys(textDefaultProps), 'actionType', 'url', 'text');
   lodashEs.without(Object.keys(imageDefaultProps), 'src');
+  const isEditingProp = {
+      isEditing: {
+          type: Boolean,
+          default: false
+      }
+  };
   const transformToComponentProps = (props) => {
-      return lodashEs.mapValues(props, (item) => {
+      const mapProps = lodashEs.mapValues(props, (item) => {
           return {
               type: item.constructor,
               default: item
           };
       });
+      return { ...mapProps, ...isEditingProp };
   };
 
   const useComponentCommon = (props, picks) => {
       const styleProps = vue.computed(() => lodashEs.pick(props, picks));
       const handleClick = () => {
-          if (props.actionType === 'url' && props.url) {
+          if (props.actionType === 'url' && props.url && !props.isEditing) {
               window.location.href = props.url;
           }
       };
@@ -96,19 +103,16 @@
   });
 
   function render(_ctx, _cache, $props, $setup, $data, $options) {
-    return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
-      vue.createCommentVNode(" 使用动态组件进行渲染 "),
-      (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(_ctx.tag), {
-        style: vue.normalizeStyle(_ctx.styleProps),
-        onClick: _ctx.handleClick,
-        class: "l-text-component"
-      }, {
-        default: vue.withCtx(() => [
-          vue.createTextVNode(vue.toDisplayString(_ctx.text), 1 /* TEXT */)
-        ]),
-        _: 1 /* STABLE */
-      }, 8 /* PROPS */, ["style", "onClick"]))
-    ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
+    return (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(_ctx.tag), {
+      style: vue.normalizeStyle(_ctx.styleProps),
+      onClick: _ctx.handleClick,
+      class: "l-text-component"
+    }, {
+      default: vue.withCtx(() => [
+        vue.createTextVNode(vue.toDisplayString(_ctx.text), 1 /* TEXT */)
+      ]),
+      _: 1 /* STABLE */
+    }, 8 /* PROPS */, ["style", "onClick"]))
   }
 
   script.render = render;

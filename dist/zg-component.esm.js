@@ -1,4 +1,4 @@
-import { computed, defineComponent, openBlock, createElementBlock, Fragment, createCommentVNode, createBlock, resolveDynamicComponent, normalizeStyle, withCtx, createTextVNode, toDisplayString } from 'vue';
+import { computed, defineComponent, openBlock, createBlock, resolveDynamicComponent, normalizeStyle, withCtx, createTextVNode, toDisplayString } from 'vue';
 import { without, mapValues, pick } from 'lodash-es';
 
 //通用的默认属性
@@ -49,19 +49,26 @@ const imageDefaultProps = {
 // 排除非样式属性
 const textStylePropNames = without(Object.keys(textDefaultProps), 'actionType', 'url', 'text');
 without(Object.keys(imageDefaultProps), 'src');
+const isEditingProp = {
+    isEditing: {
+        type: Boolean,
+        default: false
+    }
+};
 const transformToComponentProps = (props) => {
-    return mapValues(props, (item) => {
+    const mapProps = mapValues(props, (item) => {
         return {
             type: item.constructor,
             default: item
         };
     });
+    return { ...mapProps, ...isEditingProp };
 };
 
 const useComponentCommon = (props, picks) => {
     const styleProps = computed(() => pick(props, picks));
     const handleClick = () => {
-        if (props.actionType === 'url' && props.url) {
+        if (props.actionType === 'url' && props.url && !props.isEditing) {
             window.location.href = props.url;
         }
     };
@@ -93,19 +100,16 @@ var script = defineComponent({
 });
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (openBlock(), createElementBlock(Fragment, null, [
-    createCommentVNode(" 使用动态组件进行渲染 "),
-    (openBlock(), createBlock(resolveDynamicComponent(_ctx.tag), {
-      style: normalizeStyle(_ctx.styleProps),
-      onClick: _ctx.handleClick,
-      class: "l-text-component"
-    }, {
-      default: withCtx(() => [
-        createTextVNode(toDisplayString(_ctx.text), 1 /* TEXT */)
-      ]),
-      _: 1 /* STABLE */
-    }, 8 /* PROPS */, ["style", "onClick"]))
-  ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
+  return (openBlock(), createBlock(resolveDynamicComponent(_ctx.tag), {
+    style: normalizeStyle(_ctx.styleProps),
+    onClick: _ctx.handleClick,
+    class: "l-text-component"
+  }, {
+    default: withCtx(() => [
+      createTextVNode(toDisplayString(_ctx.text), 1 /* TEXT */)
+    ]),
+    _: 1 /* STABLE */
+  }, 8 /* PROPS */, ["style", "onClick"]))
 }
 
 script.render = render;

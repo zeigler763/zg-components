@@ -39,9 +39,20 @@ export declare const textDefaultProps: TextComponentProps;
 export declare const imageDefaultProps: ImageComponentProps;
 export declare const textStylePropNames: string[];
 export declare const imageStylePropsNames: string[];
+export declare const isEditingProp: {
+    isEditing: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+};
 export declare const transformToComponentProps: <T extends {
     [key: string]: any;
 }>(props: T) => { [P in keyof T]: {
     type: any;
     default: T[keyof T];
-}; };
+}; } & {
+    isEditing: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+};

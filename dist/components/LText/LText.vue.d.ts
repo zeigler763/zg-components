@@ -111,12 +111,18 @@ declare const _default: import("vue").DefineComponent<{
         type: any;
         default: string;
     };
+    isEditing: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     tag: {
         type: StringConstructor;
         default: string;
     };
 }, {
-    styleProps: import("vue").ComputedRef<Partial<Readonly<Partial<import("@/defaultProps").TextComponentProps>>>>;
+    styleProps: import("vue").ComputedRef<Partial<Readonly<Partial<import("@/defaultProps").CommonComponentProps & {
+        isEditing: boolean;
+    }>>>>;
     handleClick: () => void;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     text: {
@@ -231,6 +237,10 @@ declare const _default: import("vue").DefineComponent<{
         type: any;
         default: string;
     };
+    isEditing: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     tag: {
         type: StringConstructor;
         default: string;
@@ -264,6 +274,7 @@ declare const _default: import("vue").DefineComponent<{
     left: any;
     top: any;
     right: any;
+    isEditing: boolean;
     tag: string;
 }, {}>;
 export default _default;
